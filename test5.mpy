@@ -1,0 +1,25 @@
+import ubinascii
+import urequests
+import config
+
+
+class TwilioSMS:
+    base_url = 'https://api.twilio.com/2010-04-01'
+
+    def __init__(self, account_sid, auth_token):
+        self.twilio_account_sid = account_sid
+        self.twilio_auth = ubinascii.b2a_base64('{sid}:{token}'.format(
+            sid=account_sid, token=auth_token)).strip()
+
+    def create(self, body, from_, to):
+        data = 'Body={body}&From={from_}&To={to}'.format(
+            body=body, from_=from_.replace('+', '%2B'),
+            to=to.replace('+', '%2B'))
+        r = urequests.post(
+            '{base_url}/Accounts/{sid}/Messages.json'.format(
+                base_url=self.base_url, sid=self.twilio_account_sid),
+            data=data,
+            headers={'Authorization': b'Basic ' + self.twilio_auth,
+                     'Content-Type': 'application/x-www-form-urlencoded'})
+        print('SMS sent with status code', r.status_code)
+        print('Response: ', r.text)
