@@ -5,6 +5,7 @@ import network
 import utime
 from machine import Pin
 
+
 x=Pin(14,Pin.IN,Pin.PULL_UP)
 
 def connect_wifi(ssid, password):
@@ -42,6 +43,8 @@ connect_wifi(config.WIFI_SSID, config.WIFI_PASSWORD)
 while True:
     print(x.value())
     if not x.value():
+        print("saga")
         sms = TwilioSMS(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN)
         sms.create(body='im in danger please help me', from_=config.TWILIO_FROM_NUMBER,
                 to=config.NOTIFICATION_NUMBER)
+        utime.sleep(1)
