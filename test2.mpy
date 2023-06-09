@@ -9,14 +9,3 @@ while True:
         print("saga")
     sleep_ms(200)
 
-
-
-    curl.exe -X POST "https://api.twilio.com/2010-04-01/Accounts/AC901cc9c146a72dff0e26acb17ece13a8/Messages.json" ^
-  --data-urlencode "Body=Hello from Twilio" ^
-  --data-urlencode "From=+12543205497" ^
-  --data-urlencode "To=+919488790964" ^
-  -u "AC901cc9c146a72dff0e26acb17ece13a8:a12f38afc2ebda7e4309d96bc66af849"
-
-sid  AC901cc9c146a72dff0e26acb17ece13a8
-tik  a12f38afc2ebda7e4309d96bc66af849 
-ph  +12543205497
