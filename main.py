@@ -6,7 +6,8 @@ import utime
 from machine import Pin
 
 
-x=Pin(14,Pin.IN,Pin.PULL_UP)
+x=Pin(14,Pin.IN,Pin.PULL_UP)  # connected pullup resistor internally
+# pullup resistor -> resistor between 3v and gpio pin
 
 def connect_wifi(ssid, password):
     sta_if = network.WLAN(network.STA_IF)
